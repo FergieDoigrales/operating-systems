@@ -33,9 +33,9 @@ void runShell() {
   fergieShell();
 }
 
-void runIOLatencyTest(const std::string &filePath, int repetitions) {
+void runIOLatencyTest(const std::string &filePath, int repetitions, int num_threads) {
   size_t blockSize = 2048; 
-  measureIOLatency(filePath, blockSize, repetitions);
+  measureIOLatency(filePath, blockSize, repetitions, num_threads);
 }
 
 void runLinreg(int num_threads, int repetitions) {
@@ -67,13 +67,14 @@ int main(int argc, char *argv[]) {
   if (mode == "shell") {
     monolith::app::runShell();
   } else if (mode == "io_lat_read") {
-    if (argc != 4) {
-      std::cerr << "Usage: " << argv[0] << " io_lat_read <file_path> <repetitions>" << std::endl;
+    if (argc != 5) {
+      std::cerr << "Usage: " << argv[0] << " io_lat_read <file_path> <repetitions> <num_threads>" << std::endl;
       return 1;
     }
     std::string filePath = argv[2];
     int repetitions = std::stoi(argv[3]);
-    monolith::app::runIOLatencyTest(filePath, repetitions);
+    int num_threads = std::stoi(argv[4]);
+    monolith::app::runIOLatencyTest(filePath, repetitions, num_threads);
   } else if (mode == "create_test_file") {
     if (argc != 4) {
       std::cerr << "Usage: " << argv[0] << " create_test_file <file_path> <file_size>" << std::endl;

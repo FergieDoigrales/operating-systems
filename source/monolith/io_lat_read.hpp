@@ -3,6 +3,6 @@
 
 #include <string>
 
-void measureIOLatency(const std::string &filePath, size_t blockSize, int repetitions);
+void measureIOLatency(const std::string &filePath, size_t blockSize, int repetitions, int num_threads);
 
-#endif // IO_LAT_READ_HPP
+#endif 
