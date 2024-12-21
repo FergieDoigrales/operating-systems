@@ -6,6 +6,7 @@
 #include <ctime>
 #include <chrono>
 #include <pthread.h>
+#include <unistd.h>
 #include <random>
 
 struct ThreadData {
@@ -60,6 +61,7 @@ void* threadFunc(void* arg) {
     }
 
     *data->totalLatency += localLatency;
+    sleep(1);
     return nullptr;
 }
 
